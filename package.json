@@ -13,6 +13,7 @@
     "hardhat": "^2.20.1"
   },
   "dependencies": {
+    "@openzeppelin/contracts": "^5.0.1",
     "adm-zip": "^0.4.16",
     "agent-base": "^6.0.2",
     "aggregate-error": "^3.1.0",
@@ -60,6 +61,7 @@
     "decamelize": "^4.0.0",
     "depd": "^2.0.0",
     "diff": "^5.0.0",
+    "dotenv": "^16.4.5",
     "elliptic": "^6.5.4",
     "emoji-regex": "^8.0.0",
     "enquirer": "^2.4.1",

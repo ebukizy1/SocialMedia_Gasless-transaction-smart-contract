@@ -1,26 +1,33 @@
 import { ethers } from "hardhat";
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
 
-  const lockedAmount = ethers.parseEther("0.001");
 
-  const lock = await ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
+  const EmaxNft= await ethers.deployContract("EmaxNftToken");
 
-  await lock.waitForDeployment();
+  await EmaxNft.waitForDeployment();
 
-  console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
-  );
+  const SocialMediaFactory= await ethers.deployContract("SocialMediaFactory",[EmaxNft.target]);
+
+  await SocialMediaFactory.waitForDeployment();
+
+  const EmaxSocialRoomNFT= await ethers.deployContract("EmaxSocialRoomNFT",[SocialMediaFactory.target]);
+
+  await EmaxSocialRoomNFT.waitForDeployment();
+
+  console.log( "THE CONTRACT ADDRESS OF THE NFT_TOKEN",  EmaxNft.target);
+  console.log( "THE CONTRACT ADDRESS OF THE FACTORY ",  SocialMediaFactory.target);
+  console.log( "THE CONTRACT ADDRESS OF THE SOCIAL MEDIA",  EmaxSocialRoomNFT.target);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
 // and properly handle errors.
+
+// }
+// ➜  project3Project git:(main) ✗ npx hardhat run scripts/deploy.ts --network mumbai
+// THE CONTRACT ADDRESS OF THE NFT_TOKEN 0x7a2b674a87375d00c250772A311FB027f0366C14
+// THE CONTRACT ADDRESS OF THE FACTORY  0xc2b9E8eC0eB83aCBA2Df9472bEC66284Bc6D87cd
+// THE CONTRACT ADDRESS OF THE SOCIAL MEDIA 0x4F1d3d148696d361671cCF2F435683758e992926
 main().catch((error) => {
   console.error(error);
   process.exitCode = 1;
