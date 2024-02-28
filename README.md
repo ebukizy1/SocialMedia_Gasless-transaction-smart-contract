@@ -41,28 +41,28 @@ Users can like posts, and everyone can comment on media.
 # Role Management:
 
 The contract supports the assignment of roles such as Admin and Moderator.
-# Admins can grant roles to users.
+ Admins can grant roles to users.
 Contract Addresses Initialization
 When deploying the contract, ensure to set the addresses of the NFT token, factory, and social media contracts in the constructor.
 Functions
-# User Management
+ User Management
 registerUser(string memory _username) external: Allows users to register with a unique username.
-# Content Creation and Interaction
-# createContent(string memory _title, MediaType _mediaType, string memory _mediaUrl) external: Enables registered users to create content.
-# verifyContent(uint _id, address _user) external: Allows moderators to verify content.
-# shareContent(uint _tokenId, address _recipient) external: Permits users to share their content with others.
-# likePost(uint256 _postId, address _postOwner) external: Allows users to like posts.
+ Content Creation and Interaction
+ createContent(string memory _title, MediaType _mediaType, string memory _mediaUrl) external: Enables registered users to create content.
+ verifyContent(uint _id, address _user) external: Allows moderators to verify content.
+ shareContent(uint _tokenId, address _recipient) external: Permits users to share their content with others.
+likePost(uint256 _postId, address _postOwner) external: Allows users to like posts.
 commentOnMedia(address _mediaOwner,uint _mediaId,string memory _content) external: Allows everyone to comment on media.
-# Group Management
-# createGroup(string memory groupName, string memory _mediaUrl) external: Allows moderators to create groups.
-# deleteGroup(uint _groupId) external: Allows the creator of a group to delete it.
-# joinGroup(address _groupCreator, uint _groupId) external: Allows users to join groups.
-#Moderation and Information Retrieval
-moderatorGetAllMediaNft() external view returns (MediaNFT[] memory): Allows moderators to view all media NFTs.
+ Group Management
+ createGroup(string memory groupName, string memory _mediaUrl) external: Allows moderators to create groups.
+ deleteGroup(uint _groupId) external: Allows the creator of a group to delete it.
+ joinGroup(address _groupCreator, uint _groupId) external: Allows users to join groups.
+ Moderation and Information Retrieval
+m oderatorGetAllMediaNft() external view returns (MediaNFT[] memory): Allows moderators to view all media NFTs.
 UsersgetPosts() external view returns (MediaNFT[] memory): Allows users to view their own posts.
 searchMediaByOwner(uint _nftId) external view returns (MediaNFT memory): Allows content creators to search for media by ID.
 searchMedia(address _ownerAddres, uint _nftId) external view returns (MediaNFT memory): Allows users to search for media by owner and ID.
-Role Management
+ Role Management
 grantRole(Role _roleType, address _account) external: Allows Admins to grant roles to users.
 Important Notes
 Replace placeholder contract addresses with actual addresses when deploying.
